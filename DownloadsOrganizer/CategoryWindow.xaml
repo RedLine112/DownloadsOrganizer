@@ -1,0 +1,60 @@
+﻿<Window x:Class="DownloadsOrganizer.CategoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Kategori Detayı" Height="600" Width="600"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource MainBackground}">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Background="{DynamicResource CardBackground}" CornerRadius="5" Padding="5">
+                <StackPanel>
+                    <TextBlock Text="Bu kategoride ara..." Foreground="Gray" FontSize="10" Margin="2,0,0,2"/>
+                    <TextBox x:Name="txtSearch" Height="30" FontSize="16" VerticalContentAlignment="Center"
+                             Background="Transparent" BorderThickness="0" Foreground="{DynamicResource TextBrush}"
+                             TextChanged="TxtSearch_TextChanged"/>
+                </StackPanel>
+            </Border>
+
+            <ComboBox x:Name="cbSort" Grid.Column="2" Width="150" Height="44" Margin="10,0,0,0" 
+                      VerticalContentAlignment="Center" SelectionChanged="CbSort_SelectionChanged" SelectedIndex="0">
+                <ComboBoxItem Content="Tarih (En Yeni)"/>
+                <ComboBoxItem Content="Tarih (En Eski)"/>
+                <ComboBoxItem Content="İsim (A-Z)"/>
+                <ComboBoxItem Content="Boyut (Büyükten Küçüğe)"/>
+            </ComboBox>
+        </Grid>
+
+        <ListBox x:Name="lbFiles" Grid.Row="1" Background="{DynamicResource CardBackground}" Foreground="{DynamicResource TextBrush}"
+                 BorderThickness="0" FontSize="14" MouseDoubleClick="LbFiles_MouseDoubleClick">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Length, StringFormat=' ({0:N0} bytes)'}" Foreground="Gray" FontSize="10" Margin="5,2,0,0"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Aç" Click="MenuOpen_Click"/>
+                    <MenuItem Header="Dosya Konumunda Göster" Click="MenuShowInFolder_Click"/>
+                    <Separator/>
+                    <MenuItem Header="Yolu Kopyala" Click="MenuCopyPath_Click"/>
+                    <MenuItem Header="Sil" Click="MenuDelete_Click" Foreground="Red"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+        </ListBox>
+    </Grid>
+</Window>
