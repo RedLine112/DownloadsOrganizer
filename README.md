@@ -1,4 +1,4 @@
-working well i think
+working well i think.
 Heres some images:
 
 <img width="1002" height="703" alt="Screenshot 2025-12-18 083225" src="https://github.com/user-attachments/assets/2973dd06-2da1-4721-bc70-806ee4a9e7cd" />
